@@ -123,9 +123,10 @@ af2[#af2+1] = NPS_Histogram(player, width, height)..{
 af2[#af2]["CurrentSteps"..pn.."ChangedMessageCommand"] = nil
 
 -- The Peak NPS text
+local peakNPSText = THEME:GetString("ScreenGameplay", "PeakNPS")
 af2[#af2+1] = LoadFont("Common Normal")..{
 	Name="NPS",
-	Text="Peak NPS: ",
+	Text=peakNPSText..": ",
 	InitCommand=function(self)
 		self:horizalign(left):zoom(0.8)
 		if player == PLAYER_1 then
@@ -137,12 +138,12 @@ af2[#af2+1] = LoadFont("Common Normal")..{
 		self:diffuse((ThemePrefs.Get("RainbowMode") and not HolidayCheer()) and {0, 0, 0, 1} or {1, 1, 1, 1})
 	end,
 	HideCommand=function(self)
-		self:settext("Peak NPS: ")
+		self:settext(peakNPSText..": ")
 		self:visible(false)
 	end,
 	RedrawCommand=function(self)
 		if SL[pn].Streams.PeakNPS ~= 0 then
-			self:settext(("Peak NPS: %.1f"):format(SL[pn].Streams.PeakNPS * SL.Global.ActiveModifiers.MusicRate))
+			self:settext((peakNPSText..": %.1f"):format(SL[pn].Streams.PeakNPS * SL.Global.ActiveModifiers.MusicRate))
 			self:visible(not showPatternInfo)
 		end
 	end,
@@ -225,7 +226,7 @@ af2[#af2+1] = Def.ActorFrame{
 	TogglePatternInfoCommand=function(self)
 		self:visible(showPatternInfo)
 	end,
-	
+
 	-- Background for the additional chart info.
 	-- Only shown in 1 Player mode
 	Def.Quad{
@@ -288,7 +289,7 @@ for i, row in ipairs(layout) do
 		}
 
 		af3[#af3+1] = LoadFont("Common Normal")..{
-			Text=col,
+			Text=THEME:GetString("TechCategory", col),
 			Name=col,
 			InitCommand=function(self)
 				local textHeight = 17
