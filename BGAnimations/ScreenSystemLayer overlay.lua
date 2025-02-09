@@ -300,7 +300,7 @@ local NewSessionRequestProcessor = function(res, gsInfo)
 			groovestats:settext("❌ GrooveStats")
 
 			DiffuseEmojis(service1:ClearAttributes())
-		end
+        end
 		DiffuseEmojis(groovestats:ClearAttributes())
 		return
 	end

@@ -293,7 +293,7 @@ local af = Def.ActorFrame{
 			-- both players will have their own individual scoreboxes.
 			-- Should be fine though.
 			if sendRequest then
-				self:GetParent():GetChild("Name1"):settext("Loading...")
+				self:GetParent():GetChild("Name1"):settext(THEME:GetString("Groovestats", "Loading"))
 				self:playcommand("MakeGrooveStatsRequest", {
 					endpoint="player-leaderboards.php?"..NETWORK:EncodeQueryParameters(query),
 					method="GET",
