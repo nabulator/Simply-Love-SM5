@@ -248,11 +248,13 @@ local layout = {
 
 local colSpacing = 150
 local rowSpacing = 20
+local noneText = THEME:GetStrings("SLPlayerOptions", "None")
+local totalStreamText = THEME:GetStrings("ScreenSelectMusic", "TotalStream")
 
 for i, row in ipairs(layout) do
 	for j, col in pairs(row) do
 		af3[#af3+1] = LoadFont("Common normal")..{
-			Text=col ~= "Total Stream" and "0" or "None (0.0%)",
+			Text=col ~= totalStreamText and "0" or noneText" (0.0%)",
 			Name=col .. "Value",
 			InitCommand=function(self)
 				local textHeight = 17
@@ -269,7 +271,7 @@ for i, row in ipairs(layout) do
 				if col ~= "Total Stream" then
 					self:settext("0")
 				else
-					self:settext("None (0.0%)")
+					self:settext(noneText.." (0.0%)")
 				end
 			end,
 			RedrawCommand=function(self)
@@ -279,7 +281,7 @@ for i, row in ipairs(layout) do
 					local streamMeasures, breakMeasures = GetTotalStreamAndBreakMeasures(pn)
 					local totalMeasures = streamMeasures + breakMeasures
 					if streamMeasures == 0 then
-						self:settext("None (0.0%)")
+						self:settext(noneText.." (0.0%)")
 					else
 						self:settext(string.format("%d/%d (%0.1f%%)", streamMeasures, totalMeasures, streamMeasures/totalMeasures*100))
 					end
