@@ -46,10 +46,13 @@ end
 
 -- build a 3-line string to display info about this version of SL, this version of SM, and installed song content
 local text = ("%s%s\n%s\n%s"):format(
+    "一丁丂七丄丅丆万丈三上下丌不与丏丐丑丒专且丕世丗丘丙业丛东丝丞丟丠両丢丣两严並丧丨丩个丫丬中丮丯丰\n丱串丳临丵丶丷丸丹为主丼丽举丿乀乁乂乃乄久乆乇么义乊之乌乍乎乏乐乑乒乓乔乕乖乗乘乙乚乛乜九乞也习乡乢乣\nあいえうお\n乒乓乒乓乒乓乒乓乒乓乒乓乒乓乒乓乒乓\n卓球卓球卓球卓球卓球卓球卓球卓球卓球",
 	sl_name,  (sl_version and (" v" .. sl_version) or ""),
 	sm_version,
 	song_stats
 )
+
+find_missing_strings_in_theme_translations("Simply Love", "en.ini")
 
 return LoadFont("Common Normal")..{
 	Text=text,
